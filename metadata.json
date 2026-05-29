@@ -1,0 +1,6 @@
+{
+  "name": "Tantangan Ngiler - Ad Engine",
+  "description": "Generator & Video Exporter Iklan Facebook Reels 15 detik 'Tantangan Ngiler' Warung Mak Cindy Pahae Jae dengan customizer, timeline retro, dan pengunduh video canvas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

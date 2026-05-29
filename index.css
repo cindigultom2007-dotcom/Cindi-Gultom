@@ -1,0 +1,325 @@
+/* Font declarations if needed */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #09090b;
+  color: #fafafa;
+  overflow: hidden;
+}
+
+/* Base custom classes */
+.bg-dot-grid {
+  background-size: 40px 40px;
+  background-image: radial-gradient(circle, #27272a 1.2px, transparent 1.2px);
+}
+
+/* ==========================================================================
+   SCENE 1: CINEMATIC TITLE
+   ========================================================================== */
+.s1-title-left {
+  animation: slideFromLeft 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.s1-title-right {
+  animation: slideFromRight 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.s1-line-expand {
+  animation: lineExpand 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.8s forwards;
+  transform: scaleX(0);
+}
+
+.s1-subtext-fade {
+  animation: fadeIn 0.8s ease-out 1.4s forwards;
+  opacity: 0;
+}
+
+@keyframes slideFromLeft {
+  0% { transform: translateX(-150%) scale(0.85); opacity: 0; }
+  75% { transform: translateX(8%) scale(1.05); }
+  100% { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+@keyframes slideFromRight {
+  0% { transform: translateX(150%) scale(0.85); opacity: 0; }
+  75% { transform: translateX(-8%) scale(1.05); }
+  100% { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+@keyframes lineExpand {
+  0% { transform: scaleX(0); opacity: 0; }
+  100% { transform: scaleX(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* S1 Title Bounce Action (triggered during play) */
+.s1-bounce-effect {
+  animation: s1Bounce 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) 1s;
+}
+
+@keyframes s1Bounce {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-30px) scaleY(1.08); }
+  60% { transform: translateY(10px) scaleY(0.95); }
+  80% { transform: translateY(-5px) scaleY(1.02); }
+}
+
+
+/* ==========================================================================
+   SCENE 2: MI-SOP HERO
+   ========================================================================== */
+.s2-particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: particleFloat var(--float-dur, 6s) linear infinite;
+  opacity: 0;
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(850px) translateX(0); opacity: 0; }
+  10% { opacity: var(--max-opacity, 0.6); }
+  90% { opacity: var(--max-opacity, 0.6); }
+  100% { transform: translateY(-50px) translateX(var(--drift-x, 25px)); opacity: 0; }
+}
+
+.s2-bowl-container {
+  animation: bowlSpringUp 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+             bowlContinuousZoom 6s ease-out forwards;
+}
+
+@keyframes bowlSpringUp {
+  0% { transform: translateY(600px) scale(0.5) rotate(-15deg); opacity: 0; }
+  60% { transform: translateY(-25px) scale(1.06) rotate(5deg); opacity: 1; }
+  80% { transform: translateY(10px) scale(0.98) rotate(-2deg); }
+  100% { transform: translateY(0) scale(1) rotate(0); opacity: 1; }
+}
+
+@keyframes bowlContinuousZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.12); }
+}
+
+.s2-uap-path {
+  animation: steamRise var(--steam-dur, 3s) ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes steamRise {
+  0% { transform: translateY(5px) scaleX(0.85); opacity: 0; }
+  25% { opacity: 0.45; }
+  75% { opacity: 0.2; }
+  100% { transform: translateY(-45px) scaleX(1.25) translateX(var(--uap-drift, 12px)); opacity: 0; }
+}
+
+.s2-badge-pop {
+  animation: badgePop 1s cubic-bezier(0.175, 0.885, 0.32, 1.4) 1s forwards;
+  opacity: 0;
+  transform: scale(0) rotate(-20deg);
+}
+
+@keyframes badgePop {
+  0% { transform: scale(0) rotate(-25deg); opacity: 0; }
+  70% { transform: scale(1.25) rotate(15deg); }
+  100% { transform: scale(1) rotate(-8deg); opacity: 1; }
+}
+
+.s2-text-left {
+  animation: textSlideLeft 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.5s forwards;
+  transform: translateX(-120%);
+}
+
+.s2-text-right {
+  animation: textSlideRight 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.5s forwards;
+  transform: translateX(120%);
+}
+
+@keyframes textSlideLeft {
+  0% { transform: translateX(-120%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes textSlideRight {
+  0% { transform: translateX(120%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+
+/* ==========================================================================
+   SCENE 3: GORENGAN RAIN
+   ========================================================================== */
+.s3-rain-bg {
+  background: radial-gradient(circle at center, #92400e 0%, #78350f 100%);
+}
+
+.s3-raining-item {
+  animation: s3RainFall var(--fall-dur) cubic-bezier(0.24, 0.65, 0.5, 0.95) var(--fall-delay) forwards;
+  opacity: 0;
+  transform: translateY(-150px);
+}
+
+@keyframes s3RainFall {
+  0% { transform: translateY(-150px) rotate(var(--rot-start, -15deg)); opacity: 0; }
+  10% { opacity: 1; }
+  50% { transform: translateY(var(--land-y, 600px)) rotate(var(--rot-mid, 180deg)); }
+  65% { transform: translateY(calc(var(--land-y, 600px) - 35px)) rotate(calc(var(--rot-mid, 180deg) + 15deg)); }
+  80% { transform: translateY(var(--land-y, 600px)) rotate(calc(var(--rot-mid, 180deg) - 5deg)); }
+  90% { transform: translateY(calc(var(--land-y, 600px) - 8px)) rotate(calc(var(--rot-mid, 180deg) + 2deg)); }
+  100% { transform: translateY(var(--land-y, 600px)) rotate(var(--rot-final, 0deg)); opacity: 1; }
+}
+
+.s3-splash {
+  animation: splashAction 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes splashAction {
+  0% { transform: translate(-50%, -50%) scale(0.4); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.3); opacity: 0; }
+}
+
+.s3-pile-layer {
+  animation: pileGrow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2) var(--pile-delay) forwards;
+  opacity: 0;
+  transform: scale(0) translateY(40px);
+}
+
+@keyframes pileGrow {
+  0% { opacity: 0; transform: scale(0.2) translateY(50px); }
+  60% { opacity: 1; transform: scale(1.1) translateY(-5px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.s3-shake-kriuuk {
+  animation: kriuukShake 0.4s ease-in-out infinite;
+}
+
+@keyframes kriuukShake {
+  0%, 100% { transform: rotate(-5deg) scale(1); }
+  25% { transform: rotate(-7deg) scale(1.05); }
+  75% { transform: rotate(-3deg) scale(1.03); }
+}
+
+
+/* ==========================================================================
+   SCENE 4: KUE CAROUSEL
+   ========================================================================== */
+.s4-kue-card {
+  animation: flipInY 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) var(--flip-delay) forwards;
+  opacity: 0;
+  transform: perspective(600px) rotateY(180deg) scale(0.5);
+  transform-style: preserve-3d;
+}
+
+@keyframes flipInY {
+  0% { transform: perspective(600px) rotateY(180deg) scale(0.5); opacity: 0; }
+  70% { transform: perspective(600px) rotateY(-20deg) scale(1.08); }
+  100% { transform: perspective(600px) rotateY(0deg) scale(1); opacity: 1; }
+}
+
+.s4-star-fast {
+  animation: starGlint 1.8s ease-in-out infinite alternate var(--star-delay, 0s);
+}
+
+@keyframes starGlint {
+  0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
+  35% { transform: scale(1.1) rotate(90deg); opacity: 1; }
+  65% { transform: scale(1.1) rotate(90deg); opacity: 1; }
+}
+
+/* Master Carousel unified bounce */
+.s4-master-bounce {
+  animation: carouselBounce 0.6s cubic-bezier(0.25, 0.8, 0.25, 1.4) 4s forwards;
+}
+
+@keyframes carouselBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06) translateY(-15px); }
+}
+
+
+/* ==========================================================================
+   SCENE 5: HARGA BILLBOARD
+   ========================================================================== */
+.s5-card-bounce {
+  animation: cardBounceUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.2) var(--card-delay) forwards;
+  opacity: 0;
+  transform: translateY(350px) scale(0.85);
+}
+
+@keyframes cardBounceUp {
+  0% { transform: translateY(350px) scale(0.85); opacity: 0; }
+  70% { transform: translateY(-12px) scale(1.02); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+
+/* ==========================================================================
+   SCENE 6: GRAND FINALE CTA
+   ========================================================================== */
+.s6-confetti {
+  position: absolute;
+  width: var(--c-size, 8px);
+  height: var(--c-size, 16px);
+  opacity: 0;
+  animation: confettiFall var(--c-dur, 4s) linear infinite var(--c-delay, 0s);
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(-50px) rotate(0deg) translateX(0); opacity: 0; }
+  8% { opacity: 1; }
+  100% { transform: translateY(850px) rotate(var(--c-rot, 360deg)) translateX(var(--c-drift, 45px)); opacity: 0.15; }
+}
+
+.s6-rubberband-text {
+  animation: rubberband 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes rubberband {
+  0% { transform: scale(1) skewX(0); }
+  30% { transform: scaleX(1.25) scaleY(0.72) skewX(-15deg); }
+  42% { transform: scaleX(0.78) scaleY(1.2) skewX(12deg); }
+  55% { transform: scaleX(1.15) scaleY(0.88) skewX(-8deg); }
+  68% { transform: scaleX(0.96) scaleY(1.04) skewX(4deg); }
+  80% { transform: scaleX(1.04) scaleY(0.96) skewX(-2deg); }
+  100% { transform: scaleX(1) scaleY(1) skewX(0); }
+}
+
+/* WA Pulse always active */
+.s6-wa-pulse {
+  animation: waPulse 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes waPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7); }
+  50% { transform: scale(1.04); box-shadow: 0 0 25px 8px rgba(22, 163, 74, 0.35); }
+}
+
+
+/* ==========================================================================
+   GLOBAL UTILITIES
+   ========================================================================== */
+/* Black Overlay Scene Transition */
+.active-scene-transition {
+  animation: blackOverlayTransit 0.5s ease-in-out forwards;
+  pointer-events: none;
+}
+
+@keyframes blackOverlayTransit {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Bottom Marquee */
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 14s linear infinite;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
